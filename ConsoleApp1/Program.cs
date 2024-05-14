@@ -1,154 +1,109 @@
 ﻿using System;
 
-namespace Calculadora
+class Calculadora
 {
-    class Program
+
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        // Preguntar si se desea trabajar con números enteros o decimales
+        Console.WriteLine("¿Desea realizar operaciones con números enteros (1) o decimales (2)?");
+        int tipoNumero = int.Parse(Console.ReadLine());
+
+        // Bucle principal del programa
+        while (true)
         {
-            Console.WriteLine("..........-CALCULADORAS- -•*.•.......");
+            // Mostrar el menú de operaciones
+            Console.WriteLine("..........-CALCULADORA- -•*.•.......");
+            Console.WriteLine("\nMenú de operaciones:");
+            Console.WriteLine("1. Sumar");
+            Console.WriteLine("2. Restar");
+            Console.WriteLine("3. Multiplicar");
+            Console.WriteLine("4. Dividir");
+            Console.WriteLine("0. Salir");
 
-            Console.WriteLine("Elija modo de operación:");
-            Console.WriteLine("\n1 - Números enteros\n\n2 - Números decimales");
-            int modoNumeros = Convert.ToInt32(Console.ReadLine());
+            // Leer la opción seleccionada
+            int opcion = int.Parse(Console.ReadLine());
 
-            while (modoNumeros != 1 && modoNumeros != 2)
-            {
-                Console.WriteLine("Opción inválida. Elija 1 para números enteros o 2 para decimales.");
-                modoNumeros = Convert.ToInt32(Console.ReadLine());
-            }
-            object a;
-            object b;
-            if(modoNumeros ==1)
-            {
-                Console.WriteLine("Introduzca el primer número:");
-                //string inputA = Console.ReadLine();
-                //double a = tryParseDouble(inputA);
-                 a = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine("Introduzca el segundo número:");
-                //string inputB = Console.ReadLine();
-                //double b = tryParseDouble(inputB);
-                 b = Convert.ToInt32(Console.ReadLine());
-
-            }
-            else
-            {
-                Console.WriteLine("Introduzca el primer número:");
-                //string inputA = Console.ReadLine();
-                //double a = tryParseDouble(inputA);
-                 a = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("Introduzca el segundo número:");
-                //string inputB = Console.ReadLine();
-                //double b = tryParseDouble(inputB);
-                 b = Convert.ToDouble(Console.ReadLine());
-
-
-            }
-            
-
-            Console.WriteLine("Elija una opción:");
-            Console.WriteLine("\n1 - Sumar\n\n2- RestarIn\n\n3-Multiplicar\n\n4Dividir");
-            int opcion = Convert.ToInt32(Console.ReadLine());
-
+            // Realizar la operación seleccionada
             switch (opcion)
             {
                 case 1:
-                    if (modoNumeros == 1)
-                    {
-                        Console.WriteLine(suma_int((int)a, (int)b));
-                    }
-                    else
-                    {
-                        Console.WriteLine(suma((double)a, (double)b));
-                    }
-                    
+                    Sumar(tipoNumero);
                     break;
                 case 2:
-                    if (modoNumeros == 1)
-                    {
-                        Console.WriteLine(suma_int((int)a, (int)b));
-                    }
-                    else
-                    {
-                        Console.WriteLine(resta((double)a, (double)b));
-                    }
+                    Restar(tipoNumero);
                     break;
                 case 3:
-                    if (modoNumeros == 1)
-                    {
-                        Console.WriteLine(suma_int((int)a, (int)b));
-                    }
-                    else
-                    {
-                        Console.WriteLine(multiplicacion((double)a, (double)b));
-                    }
+                    Multiplicar(tipoNumero);
                     break;
                 case 4:
-                    if (modoNumeros == 1)
-                    {
-                        Console.WriteLine(suma_int((int)a, (int)b));
-                    }
-                    else
-                    {
-                        Console.WriteLine(division((double)a, (double)b));
-                    }
+                    Dividir(tipoNumero);
                     break;
+                case 0:
+                    Console.WriteLine("¡Gracias por usar la calculadora!");
+                    return;
                 default:
-                    Console.WriteLine("Opción inválida.");
+                    Console.WriteLine("Opción no válida. Intente de nuevo.");
                     break;
-            }
-        }
-
-        private static int suma_int(int a, int b)
-        {
-            return a + b;
-        }
-
-        private static double tryParseDouble(string input)
-        {
-            double result;
-            if (double.TryParse(input, out result))
-            {
-                return result;
-            }
-            else
-            {
-                Console.WriteLine("Entrada no válida. Se utilizará el valor 0.");
-                return 0; 
-            }
-        }
-
-        private static double suma(double a, double b)
-        {
-            return a + b;
-        }
-
-        private static double resta(double a, double b)
-        {
-            return a - b;
-        }
-
-        private static double multiplicacion(double a, double b)
-        {
-            return a * b;
-        }
-
-        private static double division(double a, double b)
-        {
-            if (b == 0)
-            {
-                Console.WriteLine("Error: División por cero.");
-                return 0; 
-            }
-            else
-            {
-                return a / b;
             }
         }
     }
+
+    static void Sumar(int tipoNumero)
+    {
+        Console.WriteLine("Ingrese el primer número:");
+        double num1 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el segundo número:");
+        double num2 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        double resultado = num1 + num2;
+        Console.WriteLine("La suma es: " + (tipoNumero == 1 ? (int)resultado : resultado));
+    }
+
+    static void Restar(int tipoNumero)
+    {
+        Console.WriteLine("Ingrese el primer número:");
+        double num1 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el segundo número:");
+        double num2 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        double resultado = num1 - num2;
+        Console.WriteLine("La resta es: " + (tipoNumero == 1 ? (int)resultado : resultado));
+    }
+
+    static void Multiplicar(int tipoNumero)
+    {
+        Console.WriteLine("Ingrese el primer número:");
+        double num1 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el segundo número:");
+        double num2 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        double resultado = num1 * num2;
+        Console.WriteLine("La multiplicación es: " + (tipoNumero == 1 ? (int)resultado : resultado));
+    }
+
+    static void Dividir(int tipoNumero)
+    {
+        Console.WriteLine("Ingrese el primer número:");
+        double num1 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el segundo número:");
+        double num2 = tipoNumero == 1 ? double.Parse(Console.ReadLine()) : double.Parse(Console.ReadLine());
+
+        if (num2 == 0)
+        {
+            Console.WriteLine("¡Error! No se puede dividir por cero.");
+            return;
+        }
+
+        double resultado = num1 / num2;
+        Console.WriteLine("La división es: " + (tipoNumero == 1 ? (int)resultado : resultado));
+    }
 }
+
 
 
 
