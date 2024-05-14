@@ -6,7 +6,7 @@ namespace Calculadora
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("..........-CALCULADORA- -•*.•.......");
+            Console.WriteLine("..........-CALCULADORAS- -•*.•.......");
 
             Console.WriteLine("Elija modo de operación:");
             Console.WriteLine("\n1 - Números enteros\n\n2 - Números decimales");
